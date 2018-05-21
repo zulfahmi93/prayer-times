@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Authors>Zulfahmi Ahmad</Authors>
+    <Company>Zulfahmi Ahmad</Company>
+    <Product>Library for Calculating Muslim's Prayer Times</Product>
+    <Description>Muslim prayer times library for .NET which includes various calculation and juristic method that can be customised.</Description>
+    <Copyright>© 2018 Zulfahmi Ahmad</Copyright>
+    <NeutralLanguage>en-MY</NeutralLanguage>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NodaTime" Version="2.3.0" />
+  </ItemGroup>
+
+</Project>
