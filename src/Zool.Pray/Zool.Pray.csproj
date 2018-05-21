@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <Authors>Zulfahmi Ahmad</Authors>
@@ -10,9 +9,8 @@
     <NeutralLanguage>en-MY</NeutralLanguage>
     <Version>0.0.1</Version>
   </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="NodaTime" Version="2.3.0" />
   </ItemGroup>
-
 </Project>
