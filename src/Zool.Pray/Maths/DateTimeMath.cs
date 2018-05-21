@@ -21,7 +21,7 @@ namespace Zool.Pray.Maths
         /// </returns>
         internal static double FixHour(double hour)
         {
-            var newHour = hour - Math.Floor(24.0 * (hour / 24.0));
+            var newHour = hour - (24.0 * Math.Floor(hour / 24.0));
             if (newHour >= 0.0)
             {
                 return newHour;
