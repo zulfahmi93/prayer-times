@@ -7,6 +7,10 @@ using Zool.Pray.Maths;
 
 namespace Zool.Pray
 {
+    /// <summary>
+    ///     Provides properties for holding information used for calculating fajr, maghrib and isha prayers. Provides methods for getting and setting the prayer times
+    ///     calculation method parameter.
+    /// </summary>
     public class CalculationMethod
     {
         #region Constructors
