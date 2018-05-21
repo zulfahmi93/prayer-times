@@ -21,7 +21,7 @@ namespace Zool.Pray.Maths
         /// </returns>
         internal static double FixDegreesAngle(double angle)
         {
-            var newAngle = angle - Math.Floor(360.0 * (angle / 360.0));
+            var newAngle = angle - (360.0 * Math.Floor(angle / 360.0));
             if (newAngle >= 0.0)
             {
                 return newAngle;
