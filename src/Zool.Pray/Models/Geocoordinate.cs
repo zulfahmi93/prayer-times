@@ -3,7 +3,7 @@
     /// <summary>
     ///     Represents the point of a location on this earth.
     /// </summary>
-    public class Geocoordinate
+    public struct Geocoordinate
     {
         #region Constructors
 
