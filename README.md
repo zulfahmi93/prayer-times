@@ -2,17 +2,16 @@
 
 ## Quick Start
 
-1. Open your `pubspec.yaml` file and add this entry:
+1. Install using Visual Studio Package Manager:
 
-    ```yaml
-    libpray: ^0.0.1
+    ```
+    Install-Package Zool.Pray
     ```
 
-2. Then run `pub get`.
-3. Import this library into your code:
+2. Or if you are using .NET CLI:
 
-    ```dart
-    import 'package:libpray/libpray.dart';
+    ```
+    dotnet add package Zool.Pray
     ```
 
 
@@ -32,7 +31,7 @@ The equation of time can be calculated using the following formula [3]:
 
 1. Compute the numbers of days and fraction, denoted as `D`, from J2000.0 epoch which is equivalent to January 1.5, 2000 in Gregorian or 2451545.0 in Julian Date:
 
-    ```dart
+    ```csharp
     D = JD - 2451545.0
     ```
 
@@ -40,7 +39,7 @@ The equation of time can be calculated using the following formula [3]:
 
 2. Then, compute:
 
-    ```dart
+    ```csharp
     // The mean anomaly of the sun, `g`.
     g = 357.529 + (0.98560028 * D)
 
@@ -55,19 +54,19 @@ The equation of time can be calculated using the following formula [3]:
 
 3. Compute the mean obliquity of the ecliptic in degrees, `e`:
 
-    ```dart
+    ```csharp
     e = 23.439 - (0.0000003.6 * D)
     ```
 
 4. Once the apparent ecliptic longitude of the sun, `L`, and the mean obliquity of the ecliptic, `e` have been computed, the right ascension, `RA` of the sun can be calculated:
 
-    ```dart
+    ```csharp
     RA = atan2(cos(e) * sin(L), cos(L))
     ```
 
 5. Thus, equation of time can be obtained as follows:
 
-    ```dart
+    ```csharp
     EqT = (q / 15) - RA
     ```
 
@@ -79,7 +78,7 @@ The Earth’s axis is tilted by 23.5 degrees away from the solar plane. The Sun�
 
 The sun's declination can be computed using the formula stated above from step 1 until step 3. Then, the declination, `d` can be obtained by:
 
-```dart
+```csharp
 d = asin(sin(e) * sin(L))
 ```
 
@@ -87,7 +86,7 @@ d = asin(sin(e) * sin(L))
 
 The following formula can be used to calculate the difference of time between the mid day and the time when the sun reaches the `α` angle below the horizon, `T(α)` [1]:
 
-```dart
+```csharp
 T(α) = acos((-sin(α) - (sin(d) * sin(latitude))) / (cos(d) * cos(latitude))) / 15
 ```
 
@@ -95,7 +94,7 @@ T(α) = acos((-sin(α) - (sin(d) * sin(latitude))) / (cos(d) * cos(latitude))) /
 
 This library uses the following formula for applying adjustment to the calculated prayer times (denoted as `adj`):
 
-```dart
+```csharp
 adj = timezone - longitude / 15
 ```
 
@@ -103,13 +102,13 @@ adj = timezone - longitude / 15
 
 Dhuhr prayer time arrives when the sun begins to decline after reaching its highest point on the sky [1]. To compute dhuhr prayer time, first, the time of the mid day is calculated:
 
-```dart
+```csharp
 midday = 12 - EqT
 ```
 
 Then, by adding adjustment, `adj` to the calculated mid day time, we can obtained the dhuhr prayer time:
 
-```dart
+```csharp
 dhuhr = midday + adj
 ```
 
@@ -127,13 +126,13 @@ To calculate fajr and isha prayer times, these parameters are required:
 
 First, `T(α)` is calculated using [this formula](#time-of-sun-at-given-angle-below-horizon). Then, the fajr time can be obtained by subtracting calculated `T(α)` from the `midday`:
 
-```dart
+```csharp
 fajr = midday - T(α)
 ```
 
 The isha time can be obtained by adding calculated `T(α)` to the `midday`:
 
-```dart
+```csharp
 isha = midday + T(α)
 ```
 
@@ -162,13 +161,13 @@ There are several opinions about the angle to be used for calculating fajr and i
 
 The astronomical sunrise and sunset occur at `α = 0`. Due to the refraction of light by terrestrial atmosphere, actual sunrise appears slightly before astronomical sunrise and actual sunset occurs slightly after astronomical sunset. Thus, to get the actual sunrise and sunset, the angle `α` starts from a value of `0.833` [1]. If the elevation is greater than `0`, the angle can be calculated as follows:
 
-```dart
+```csharp
 α = 0.833 + (0.0347 * sqrt(elevation))
 ```
 
 Then, the actual sunrise and sunset can be calculated as follows:
 
-```dart
+```csharp
 // Sunrise.
 sunrise = midday - T(α)
 
@@ -182,14 +181,14 @@ There are two main opinions for computing asr prayer time. Majority of fiqh's sc
 
 First, the angle, `α` is calculated using this formula:
 
-```dart
+```csharp
 // For shafi'i, maliki and hanbali, t = 1 while hanafi, t = 2
 t = 1
 α = -arccot(t + tan(latitude - d))
 ```
 
 Then, asr prayer time is obtained using the following formula:
-```dart
+```csharp
 asr = midday + T(α)
 ```
 
@@ -213,7 +212,7 @@ The following table shows the angle used by Shia method:
 
 Dhuha time arrives when a third of sunrise and fajr time difference is added to the sunrise time [7]. Thus, this library calculate the dhuha time as follows:
 
-```dart
+```csharp
 diff = sunrise - fajr
 dhuha = sunrise + (diff / 3)
 ```
@@ -222,69 +221,94 @@ dhuha = sunrise + (diff / 3)
 
 Midnight is generally calculated as the mean time from sunset to sunrise of the next day [1]:
 
-```dart
+```csharp
 diff = sunrise - sunset
 midnight = sunset + (diff / 2)
 ```
 
 However, in Shia point of view, the midnight (juridical midnight, the ending time for performing isha prayer) is calculated as the mean time from sunset to fajr [1]:
 
-```dart
+```csharp
 diff = fajr - sunset
 midnight = sunset + (diff / 2)
 ```
 
 ## Example
 
-```dart
-import 'package:libpray/libpray.dart';
+```csharp
+using System;
+using System.Globalization;
 
-void main() {
-  // Use April 12th, 2018.
-  const int year = 2018;
-  const int month = 4;
-  const int day = 12;
-  final DateTime when = new DateTime.utc(year, month, day);
+using NodaTime;
+using Zool.Pray.Models;
 
-  // Init settings.
-  final PrayerCalculationSettings settings = new PrayerCalculationSettings();
 
-  // Set calculation method to JAKIM (Fajr: 18.0 and Isha: 20.0).
-  settings.calculationMethod.setCalculationMethodPreset(when, CalculationMethodPreset.departmentOfIslamicAdvancementOfMalaysia);
+namespace PrayerTimesExample
+{
+    class Program
+    {
+        private const int Year = 2018;
+        private const int Month = 4;
+        private const int Day = 12;
+        private const double TimeZone = 8.0;
+        
+        static void Main()
+        {
+            // Use April 12th, 2018.
+            var when = Instant.FromUtc(Year, Month, Day, 0, 0);
+            
+            // Init settings.
+            var settings = new PrayerCalculationSettings();
 
-  // Init location info.
-  const Geocoordinate geo = const Geocoordinate(2.0, 101.0, 2.0);
-  const double timezone = 8.0;
+            // Set calculation method to JAKIM (Fajr: 18.0 and Isha: 20.0).
+            settings.CalculationMethod.SetCalculationMethodPreset(when, CalculationMethodPreset.DepartmentOfIslamicAdvancementOfMalaysia);
 
-  // Generate prayer times for one day on April 12th, 2018.
-  final Prayers prayers = Prayers.on(when, settings, geo, timezone);
-  print(prayers.imsak);
-  print(prayers.fajr);
-  print(prayers.sunrise);
-  print(prayers.dhuha);
-  print(prayers.dhuhr);
-  print(prayers.asr);
-  print(prayers.sunset);
-  print(prayers.maghrib);
-  print(prayers.isha);
-  print(prayers.midnight);
+            // Init location info.
+            var geo = new Geocoordinate(2.0, 101.0, 2.0);
 
-  // Generate current prayer time
-  final Prayer current = Prayer.now(settings, geo, timezone);
-  print('${current.type}: ${current.time}');
+            // Generate prayer times for one day on April 12th, 2018.
+            var prayer = Prayers.On(when, settings, geo, TimeZone);
+            Console.WriteLine($"Prayer Times at [{geo.Latitude}, {geo.Longitude}, {geo.Altitude}] for April 12th, 2018:");
+            Console.WriteLine($"Imsak: {GetPrayerTimeString(prayer.Imsak)}");
+            Console.WriteLine($"Fajr: {GetPrayerTimeString(prayer.Fajr)}");
+            Console.WriteLine($"Sunrise: {GetPrayerTimeString(prayer.Sunrise)}");
+            Console.WriteLine($"Dhuha: {GetPrayerTimeString(prayer.Dhuha)}");
+            Console.WriteLine($"Dhuhr: {GetPrayerTimeString(prayer.Dhuhr)}");
+            Console.WriteLine($"Asr: {GetPrayerTimeString(prayer.Asr)}");
+            Console.WriteLine($"Sunset: {GetPrayerTimeString(prayer.Sunset)}");
+            Console.WriteLine($"Maghrib: {GetPrayerTimeString(prayer.Maghrib)}");
+            Console.WriteLine($"Isha: {GetPrayerTimeString(prayer.Isha)}");
+            Console.WriteLine($"Midnight: {GetPrayerTimeString(prayer.Midnight)}");
 
-  // Generate next prayer time
-  final Prayer next = Prayer.next(settings, geo, timezone);
-  print('${next.type}: ${next.time}');
+            // Generate current prayer time
+            var current = Prayer.Now(settings, geo, TimeZone, SystemClock.Instance);
+            Console.WriteLine($"Current prayer at [{geo.Latitude}, {geo.Longitude}, {geo.Altitude}] for April 12th, 2018:");
+            Console.WriteLine($"{current.Type} - {GetPrayerTimeString(current.Time)}");
 
-  // Generate later prayer time
-  final Prayer later = Prayer.later(settings, geo, timezone);
-  print('${later.type}: ${later.time}');
+            // Generate next prayer time
+            var next = Prayer.Next(settings, geo, TimeZone, SystemClock.Instance);
+            Console.WriteLine($"Next prayer at [{geo.Latitude}, {geo.Longitude}, {geo.Altitude}] for April 12th, 2018:");
+            Console.WriteLine($"{next.Type} - {GetPrayerTimeString(next.Time)}");
 
-  // Generate after later prayer time
-  final Prayer afterLater = Prayer.afterLater(settings, geo, timezone);
-  print('${afterLater.type}: ${afterLater.time}');
+            // Generate later prayer time
+            var later = Prayer.Later(settings, geo, TimeZone, SystemClock.Instance);
+            Console.WriteLine($"Later prayer at [{geo.Latitude}, {geo.Longitude}, {geo.Altitude}] for April 12th, 2018:");
+            Console.WriteLine($"{later.Type} - {GetPrayerTimeString(later.Time)}");
+
+            // Generate after later prayer time
+            var afterLater = Prayer.AfterLater(settings, geo, TimeZone, SystemClock.Instance);
+            Console.WriteLine($"After later prayer at [{geo.Latitude}, {geo.Longitude}, {geo.Altitude}] for April 12th, 2018:");
+            Console.WriteLine($"{afterLater.Type} - {GetPrayerTimeString(afterLater.Time)}");
+        }
+
+        static string GetPrayerTimeString(Instant instant)
+        {
+            var zoned = instant.InZone(DateTimeZone.ForOffset(Offset.FromTimeSpan(TimeSpan.FromHours(TimeZone))));
+            return zoned.ToString("HH:mm", CultureInfo.InvariantCulture);
+        }
+    }
 }
+
 ```
 
 ## References
@@ -312,5 +336,5 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 
 This project is licensed under the MIT License - see the [LICENSE][license] file for details.
 
-[tracker]: https://github.com/zulfahmi93/dart_libpray/issues
+[tracker]: https://github.com/zulfahmi93/prayer-times/issues
 [license]: LICENSE
