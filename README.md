@@ -1,4 +1,6 @@
-# Muslim Prayer Times Library for Dart
+# Muslim Prayer Times Library for .NET
+
+[![NuGet](https://img.shields.io/nuget/v/Zool.Pray.svg?style=flat-square)](https://www.nuget.org/packages/Zool.Pray/)
 
 ## Quick Start
 
