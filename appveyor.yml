@@ -1,0 +1,11 @@
+version: 0.1.0-build{build}
+image:
+- Visual Studio 2019 Preview
+- Ubuntu
+configuration:
+- Debug
+- Release
+before_build:
+- pwsh: dotnet restore
+build:
+  verbosity: minimal

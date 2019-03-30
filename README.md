@@ -1,6 +1,7 @@
 # Muslim Prayer Times Library for .NET
 
 [![NuGet](https://img.shields.io/nuget/v/Zool.Pray.svg?style=flat-square)](https://www.nuget.org/packages/Zool.Pray/)
+[![Build status](https://img.shields.io/appveyor/ci/zulfahmi93/prayer-times.svg?style=flat-square)](https://ci.appveyor.com/project/zulfahmi93/prayer-times)
 
 ## Quick Start
 
@@ -253,12 +254,12 @@ namespace PrayerTimesExample
         private const int Month = 4;
         private const int Day = 12;
         private const double TimeZone = 8.0;
-        
+
         static void Main()
         {
             // Use April 12th, 2018.
             var when = Instant.FromUtc(Year, Month, Day, 0, 0);
-            
+
             // Init settings.
             var settings = new PrayerCalculationSettings();
 
