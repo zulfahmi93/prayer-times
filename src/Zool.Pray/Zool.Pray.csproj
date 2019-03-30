@@ -14,10 +14,17 @@
     <RepositoryUrl>https://github.com/zulfahmi93/prayer-times</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <LangVersion>7.3</LangVersion>
+
+    <!-- Source Link Properties -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
     <PackageReference Include="NodaTime" Version="2.4.5" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-18618-05" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
