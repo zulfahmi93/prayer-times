@@ -4,18 +4,20 @@
     <Authors>Zulfahmi Ahmad</Authors>
     <Product>Library for Calculating Muslim's Prayer Times</Product>
     <Description>Muslim prayer times library for .NET which includes various calculation and juristic method that can be customised.</Description>
-    <Copyright>© 2018 Zulfahmi Ahmad</Copyright>
+    <Copyright>© 2019 Zulfahmi Ahmad</Copyright>
     <NeutralLanguage>en-MY</NeutralLanguage>
-    <Version>0.0.2</Version>
+    <Version>0.1.0</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/zulfahmi93/prayer-times/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/zulfahmi93/prayer-times</PackageProjectUrl>
     <PackageTags>prayer;times;muslim;islam;mosque</PackageTags>
     <RepositoryUrl>https://github.com/zulfahmi93/prayer-times</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
-    <PackageReference Include="NodaTime" Version="2.3.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
+    <PackageReference Include="NodaTime" Version="2.4.5" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 </Project>
