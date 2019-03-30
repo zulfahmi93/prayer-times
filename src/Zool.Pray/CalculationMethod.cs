@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 using NodaTime;
 
@@ -34,26 +35,31 @@ namespace Zool.Pray
         /// <summary>
         ///     Gets the calculation method preset.
         /// </summary>
+        [Display(Name = "Calculation Method Preset")]
         public CalculationMethodPreset Preset { get; private set; }
 
         /// <summary>
         ///     Gets the calculation parameter for fajr prayer.
         /// </summary>
+        [Display(Name = "Fajr Calculation Parameter")]
         public PrayerCalculationParameter FajrParameter { get; }
 
         /// <summary>
         ///     Gets the calculation parameter for maghrib prayer.
         /// </summary>
+        [Display(Name = "Maghrib Calculation Parameter")]
         public PrayerCalculationParameter MaghribParameter { get; }
 
         /// <summary>
         ///     Gets the calculation parameter for isha prayer.
         /// </summary>
+        [Display(Name = "Isha Calculation Parameter")]
         public PrayerCalculationParameter IshaParameter { get; }
 
         /// <summary>
         ///     Gets the calculation parameter for midnight.
         /// </summary>
+        [Display(Name = "Midnight Time Calculation Method")]
         public Midnight MidnightMethod { get; private set; }
 
         #endregion

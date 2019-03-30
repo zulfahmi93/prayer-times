@@ -1,4 +1,6 @@
-﻿using NodaTime;
+﻿using System.ComponentModel.DataAnnotations;
+
+using NodaTime;
 
 using Zool.Pray.Models;
 
@@ -29,11 +31,13 @@ namespace Zool.Pray
         /// <summary>
         ///     Gets the type of this prayer.
         /// </summary>
+        [Display(Name = "Type of Prayer")]
         public PrayerType Type { get; }
 
         /// <summary>
         ///     Gets the time of this prayer.
         /// </summary>
+        [Display(Name = "Time of Prayer")]
         public Instant Time { get; }
 
         #endregion

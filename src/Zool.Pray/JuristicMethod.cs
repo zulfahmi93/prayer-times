@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Zool.Pray
@@ -27,11 +28,13 @@ namespace Zool.Pray
         /// <summary>
         ///     Gets the juristic method preset.
         /// </summary>
+        [Display(Name = "Juristic Method Preset")]
         public JuristicMethodPreset Preset { get; private set; }
 
         /// <summary>
         ///     Gets the juristic method time of shadow parameter.
         /// </summary>
+        [Display(Name = "Multiplication Factor of Shadow's Length")]
         public int TimeOfShadow { get; private set; }
 
         #endregion

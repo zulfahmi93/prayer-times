@@ -1,4 +1,6 @@
-﻿using NodaTime;
+﻿using System.ComponentModel.DataAnnotations;
+
+using NodaTime;
 
 using Zool.Pray.Models;
 
@@ -46,51 +48,61 @@ namespace Zool.Pray
         /// <summary>
         ///     Gets the imsak prayer time.
         /// </summary>
+        [Display(Name = "Imsak")]
         public Instant Imsak { get; }
 
         /// <summary>
         ///     Gets the fajr prayer time.
         /// </summary>
+        [Display(Name = "Fajr")]
         public Instant Fajr { get; }
 
         /// <summary>
         ///     Gets the sunrise time.
         /// </summary>
+        [Display(Name = "Sunrise")]
         public Instant Sunrise { get; }
 
         /// <summary>
         ///     Gets the dhuha prayer time.
         /// </summary>
+        [Display(Name = "Dhuha")]
         public Instant Dhuha { get; }
 
         /// <summary>
         ///     Gets the dhuhr prayer time.
         /// </summary>
+        [Display(Name = "Zuhr")]
         public Instant Dhuhr { get; }
 
         /// <summary>
         ///     Gets the asr prayer time.
         /// </summary>
+        [Display(Name = "Asr")]
         public Instant Asr { get; }
 
         /// <summary>
         ///     Gets the sunset time.
         /// </summary>
+        [Display(Name = "Sunset")]
         public Instant Sunset { get; }
 
         /// <summary>
         ///     Gets the maghrib prayer time.
         /// </summary>
+        [Display(Name = "Maghrib")]
         public Instant Maghrib { get; }
 
         /// <summary>
         ///     Gets the isha prayer time.
         /// </summary>
+        [Display(Name = "Isha")]
         public Instant Isha { get; }
 
         /// <summary>
         ///     Gets the midnight time.
         /// </summary>
+        [Display(Name = "Midnight")]
         public Instant Midnight { get; }
 
         #endregion
