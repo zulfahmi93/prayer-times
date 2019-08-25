@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Zool.Pray" Version="0.0.1" />
+    <PackageReference Include="Zool.Pray" Version="0.2.0" />
   </ItemGroup>
 
 </Project>

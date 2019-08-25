@@ -13,12 +13,12 @@ namespace Zool.Pray.Example
         private const int Month = 4;
         private const int Day = 12;
         private const double TimeZone = 8.0;
-        
+
         static void Main()
         {
             // Use April 12th, 2018.
             var when = Instant.FromUtc(Year, Month, Day, 0, 0);
-            
+
             // Init settings.
             var settings = new PrayerCalculationSettings();
 
@@ -35,7 +35,7 @@ namespace Zool.Pray.Example
             Console.WriteLine($"Fajr: {GetPrayerTimeString(prayer.Fajr)}");
             Console.WriteLine($"Sunrise: {GetPrayerTimeString(prayer.Sunrise)}");
             Console.WriteLine($"Dhuha: {GetPrayerTimeString(prayer.Dhuha)}");
-            Console.WriteLine($"Dhuhr: {GetPrayerTimeString(prayer.Dhuhr)}");
+            Console.WriteLine($"Zuhr: {GetPrayerTimeString(prayer.Zuhr)}");
             Console.WriteLine($"Asr: {GetPrayerTimeString(prayer.Asr)}");
             Console.WriteLine($"Sunset: {GetPrayerTimeString(prayer.Sunset)}");
             Console.WriteLine($"Maghrib: {GetPrayerTimeString(prayer.Maghrib)}");

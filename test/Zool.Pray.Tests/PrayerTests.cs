@@ -66,7 +66,7 @@ namespace Zool.Pray.Tests
             var fajrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 5, 55, 0, TimeSpan.FromHours(8.0)));
             var sunriseExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 7, 13, 0, TimeSpan.FromHours(8.0)));
             var dhuhaExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 7, 38, 0, TimeSpan.FromHours(8.0)));
-            var dhuhrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 13, 18, 0, TimeSpan.FromHours(8.0)));
+            var zuhrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 13, 18, 0, TimeSpan.FromHours(8.0)));
             var asrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 16, 29, 0, TimeSpan.FromHours(8.0)));
             var sunsetExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 19, 22, 0, TimeSpan.FromHours(8.0)));
             var maghribExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 19, 23, 0, TimeSpan.FromHours(8.0)));
@@ -78,7 +78,7 @@ namespace Zool.Pray.Tests
             AssertEqualInstant(fajrExpected, prayers.Fajr);
             AssertEqualInstant(sunriseExpected, prayers.Sunrise);
             AssertEqualInstant(dhuhaExpected, prayers.Dhuha);
-            AssertEqualInstant(dhuhrExpected, prayers.Dhuhr);
+            AssertEqualInstant(zuhrExpected, prayers.Zuhr);
             AssertEqualInstant(asrExpected, prayers.Asr);
             AssertEqualInstant(sunsetExpected, prayers.Sunset);
             AssertEqualInstant(maghribExpected, prayers.Maghrib);
@@ -93,7 +93,7 @@ namespace Zool.Pray.Tests
             var fajrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 5, 55, 0, TimeSpan.FromHours(8.0)));
             var sunriseExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 7, 13, 0, TimeSpan.FromHours(8.0)));
             var dhuhaExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 7, 38, 0, TimeSpan.FromHours(8.0)));
-            var dhuhrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 13, 18, 0, TimeSpan.FromHours(8.0)));
+            var zuhrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 13, 18, 0, TimeSpan.FromHours(8.0)));
             var asrExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 16, 29, 0, TimeSpan.FromHours(8.0)));
             var sunsetExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 19, 22, 0, TimeSpan.FromHours(8.0)));
             var maghribExpected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 19, 23, 0, TimeSpan.FromHours(8.0)));
@@ -105,7 +105,7 @@ namespace Zool.Pray.Tests
             AssertEqualInstant(fajrExpected, prayers.Fajr);
             AssertEqualInstant(sunriseExpected, prayers.Sunrise);
             AssertEqualInstant(dhuhaExpected, prayers.Dhuha);
-            AssertEqualInstant(dhuhrExpected, prayers.Dhuhr);
+            AssertEqualInstant(zuhrExpected, prayers.Zuhr);
             AssertEqualInstant(asrExpected, prayers.Asr);
             AssertEqualInstant(sunsetExpected, prayers.Sunset);
             AssertEqualInstant(maghribExpected, prayers.Maghrib);
@@ -128,7 +128,7 @@ namespace Zool.Pray.Tests
             var expected = Instant.FromDateTimeOffset(new DateTimeOffset(2018, 4, 12, 13, 18, 0, TimeSpan.FromHours(8.0)));
             var prayer = Prayer.Next(_settings, _coordinate, TimeZone, _mockClock);
             AssertEqualInstant(expected, prayer.Time);
-            Assert.Equal(PrayerType.Dhuhr, prayer.Type);
+            Assert.Equal(PrayerType.Zuhr, prayer.Type);
         }
 
         [Fact(DisplayName = "Test get later (mocked for April 12th, 2018) prayer time at [2, 101, 2] using JAKIM.")]

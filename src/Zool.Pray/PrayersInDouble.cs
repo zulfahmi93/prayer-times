@@ -28,9 +28,9 @@
         internal double Dhuha { get; set; }
 
         /// <summary>
-        ///     Dhuhr prayer time in floating point format.
+        ///     Zuhr prayer time in floating point format.
         /// </summary>
-        internal double Dhuhr { get; set; }
+        internal double Zuhr { get; set; }
 
         /// <summary>
         ///     Asr prayer time in floating point format.

@@ -33,8 +33,8 @@ namespace Zool.Pray.Tests
             Assert.Equal(0.25, AstronomyMath.GetDayFraction(6.0));
         }
 
-        [Fact(DisplayName = "Test get day fraction for dhuhr default time of 12.")]
-        public void TestGetDayFractionForDhuhrDefaultTime()
+        [Fact(DisplayName = "Test get day fraction for zuhr default time of 12.")]
+        public void TestGetDayFractionForZuhrDefaultTime()
         {
             Assert.Equal(0.5, AstronomyMath.GetDayFraction(12.0));
         }

@@ -21,7 +21,7 @@ namespace Zool.Pray
                        Instant fajr,
                        Instant sunrise,
                        Instant dhuha,
-                       Instant dhuhr,
+                       Instant zuhr,
                        Instant asr,
                        Instant sunset,
                        Instant maghrib,
@@ -32,7 +32,7 @@ namespace Zool.Pray
             Fajr = fajr;
             Sunrise = sunrise;
             Dhuha = dhuha;
-            Dhuhr = dhuhr;
+            Zuhr = zuhr;
             Asr = asr;
             Sunset = sunset;
             Maghrib = maghrib;
@@ -70,10 +70,10 @@ namespace Zool.Pray
         public Instant Dhuha { get; }
 
         /// <summary>
-        ///     Gets the dhuhr prayer time.
+        ///     Gets the zuhr prayer time.
         /// </summary>
         [Display(Name = "Zuhr")]
-        public Instant Dhuhr { get; }
+        public Instant Zuhr { get; }
 
         /// <summary>
         ///     Gets the asr prayer time.

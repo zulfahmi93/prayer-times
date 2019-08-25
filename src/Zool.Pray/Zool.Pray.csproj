@@ -6,7 +6,7 @@
     <Description>Muslim prayer times library for .NET which includes various calculation and juristic method that can be customised.</Description>
     <Copyright>© 2019 Zulfahmi Ahmad</Copyright>
     <NeutralLanguage>en-MY</NeutralLanguage>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/zulfahmi93/prayer-times/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/zulfahmi93/prayer-times</PackageProjectUrl>

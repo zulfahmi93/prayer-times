@@ -33,10 +33,10 @@ namespace Zool.Pray
         Dhuha,
 
         /// <summary>
-        ///     Dhuhr prayer type.
+        ///     Zuhr prayer type.
         /// </summary>
         [Display(Name = "Zuhr")]
-        Dhuhr,
+        Zuhr,
 
         /// <summary>
         ///     Asr prayer type.

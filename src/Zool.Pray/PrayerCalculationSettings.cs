@@ -76,10 +76,10 @@ namespace Zool.Pray
         public int DhuhaMinutesAdjustment { get; set; }
 
         /// <summary>
-        ///     Gets or sets the minute adjustment parameter for dhuhr prayer.
+        ///     Gets or sets the minute adjustment parameter for zuhr prayer.
         /// </summary>
         [Display(Name = "Zuhr Adjustment")]
-        public int DhuhrMinutesAdjustment { get; set; }
+        public int ZuhrMinutesAdjustment { get; set; }
 
         /// <summary>
         ///     Gets or sets the minute adjustment parameter for asr prayer.

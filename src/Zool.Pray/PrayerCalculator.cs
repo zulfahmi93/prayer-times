@@ -20,7 +20,7 @@ namespace Zool.Pray
         // private const double ImsakDefaultTime = 5.0;
         private const double FajrDefaultTime = 5.0;
         private const double SunriseDefaultTime = 6.0;
-        private const double DhuhrDefaultTime = 12.0;
+        private const double ZuhrDefaultTime = 12.0;
         private const double AsrDefaultTime = 13.0;
         private const double SunsetDefaultTime = 18.0;
         private const double MaghribDefaultTime = 18.0;
@@ -81,7 +81,7 @@ namespace Zool.Pray
                                       RoundPrayerTime(converted.Fajr),
                                       RoundPrayerTime(converted.Sunrise),
                                       RoundPrayerTime(converted.Dhuha),
-                                      RoundPrayerTime(converted.Dhuhr),
+                                      RoundPrayerTime(converted.Zuhr),
                                       RoundPrayerTime(converted.Asr),
                                       RoundPrayerTime(converted.Sunset),
                                       RoundPrayerTime(converted.Maghrib),
@@ -135,14 +135,14 @@ namespace Zool.Pray
                 return new Prayer(PrayerType.Sunrise, today.Sunrise);
             }
 
-            if (now < today.Dhuhr)
+            if (now < today.Zuhr)
             {
                 return new Prayer(PrayerType.Dhuha, today.Dhuha);
             }
 
             if (now < today.Asr)
             {
-                return new Prayer(PrayerType.Dhuhr, today.Dhuhr);
+                return new Prayer(PrayerType.Zuhr, today.Zuhr);
             }
 
             if (now < today.Maghrib)
@@ -202,9 +202,9 @@ namespace Zool.Pray
                 return new Prayer(PrayerType.Dhuha, today.Dhuha);
             }
 
-            if (now < today.Dhuhr)
+            if (now < today.Zuhr)
             {
-                return new Prayer(PrayerType.Dhuhr, today.Dhuhr);
+                return new Prayer(PrayerType.Zuhr, today.Zuhr);
             }
 
             if (now < today.Asr)
@@ -266,10 +266,10 @@ namespace Zool.Pray
 
             if (now < today.Dhuha)
             {
-                return new Prayer(PrayerType.Dhuhr, today.Dhuhr);
+                return new Prayer(PrayerType.Zuhr, today.Zuhr);
             }
 
-            if (now < today.Dhuhr)
+            if (now < today.Zuhr)
             {
                 return new Prayer(PrayerType.Asr, today.Asr);
             }
@@ -328,7 +328,7 @@ namespace Zool.Pray
 
             if (now < today.Sunrise)
             {
-                return new Prayer(PrayerType.Dhuhr, today.Dhuhr);
+                return new Prayer(PrayerType.Zuhr, today.Zuhr);
             }
 
             if (now < today.Dhuha)
@@ -336,7 +336,7 @@ namespace Zool.Pray
                 return new Prayer(PrayerType.Asr, today.Asr);
             }
 
-            if (now < today.Dhuhr)
+            if (now < today.Zuhr)
             {
                 return new Prayer(PrayerType.Maghrib, today.Maghrib);
             }
@@ -378,11 +378,11 @@ namespace Zool.Pray
                 throw new PrayerCalculationException("Fajr calculation parameter type must be the type of angle.");
             }
 
-            // Compute fajr, sunrise, dhuha, dhuhr, asr and sunset.
+            // Compute fajr, sunrise, dhuha, zuhr, asr and sunset.
             raw.Fajr = ComputeFajrTime(jd, settings.CalculationMethod.FajrParameter.Value, latitude);
             raw.Sunrise = ComputeSunriseTime(jd, latitude, altitude);
             raw.Dhuha = ComputeDhuhaTime(raw.Fajr, raw.Sunrise);
-            raw.Dhuhr = ComputeDhuhrTime(jd);
+            raw.Zuhr = ComputeZuhrTime(jd);
             raw.Asr = ComputeAsrTime(jd, settings.JuristicMethod.TimeOfShadow, latitude);
             raw.Sunset = ComputeSunsetTime(jd, latitude, altitude);
 
@@ -444,14 +444,14 @@ namespace Zool.Pray
         }
 
         /// <summary>
-        /// Calculate prayer time for dhuhr.
+        /// Calculate prayer time for zuhr.
         /// </summary>
-        private static double ComputeDhuhrTime(double jd)
+        private static double ComputeZuhrTime(double jd)
         {
-            var dayFraction = AstronomyMath.GetDayFraction(DhuhrDefaultTime);
+            var dayFraction = AstronomyMath.GetDayFraction(ZuhrDefaultTime);
             var midDay = AstronomyMath.ComputeMidDay(jd, dayFraction);
 
-            // The fiqh method which states that dhuhr is when the sun's disk comes out
+            // The fiqh method which states that zuhr is when the sun's disk comes out
             // of its zenith line, which is a line between the observer and the center
             // of the sun when it is at the highest point is used here. Thus,
             // additional 65 seconds is added to the mid day time, which corresponds
@@ -461,8 +461,8 @@ namespace Zool.Pray
             // When, d is at maximum, t evaluates to ~62 seconds and ~65 seconds when
             // d is at minimum. Converting 65 seconds to hour yields a value of
             // 0.018055555555555554.
-            var dhuhrTime = midDay + 0.018055555555555554;
-            return dhuhrTime;
+            var zuhrTime = midDay + 0.018055555555555554;
+            return zuhrTime;
         }
 
         /// <summary>
@@ -562,7 +562,7 @@ namespace Zool.Pray
             raw.Fajr = raw.Fajr + adjustment;
             raw.Sunrise = raw.Sunrise + adjustment;
             raw.Dhuha = raw.Dhuha + adjustment;
-            raw.Dhuhr = raw.Dhuhr + adjustment;
+            raw.Zuhr = raw.Zuhr + adjustment;
             raw.Asr = raw.Asr + adjustment;
             raw.Sunset = raw.Sunset + adjustment;
             raw.Maghrib = raw.Maghrib + adjustment;
@@ -637,7 +637,7 @@ namespace Zool.Pray
             raw.Fajr = raw.Fajr + (settings.FajrMinutesAdjustment / 60.0);
             raw.Sunrise = raw.Sunrise + (settings.SunriseMinutesAdjustment / 60.0);
             raw.Dhuha = raw.Dhuha + (settings.DhuhaMinutesAdjustment / 60.0);
-            raw.Dhuhr = raw.Dhuhr + (settings.DhuhrMinutesAdjustment / 60.0);
+            raw.Zuhr = raw.Zuhr + (settings.ZuhrMinutesAdjustment / 60.0);
             raw.Asr = raw.Asr + (settings.AsrMinutesAdjustment / 60.0);
             raw.Maghrib = raw.Maghrib + (settings.MaghribMinutesAdjustment / 60.0);
             raw.Isha = raw.Isha + (settings.IshaMinutesAdjustment / 60.0);
@@ -657,7 +657,7 @@ namespace Zool.Pray
                                instant + Duration.FromHours(prayers.Fajr),
                                instant + Duration.FromHours(prayers.Sunrise),
                                instant + Duration.FromHours(prayers.Dhuha),
-                               instant + Duration.FromHours(prayers.Dhuhr),
+                               instant + Duration.FromHours(prayers.Zuhr),
                                instant + Duration.FromHours(prayers.Asr),
                                instant + Duration.FromHours(prayers.Sunset),
                                instant + Duration.FromHours(prayers.Maghrib),
